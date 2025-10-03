@@ -6,10 +6,10 @@ metadata:
 spec:
   project: default
 
-  source:
+  source:        
     repoURL: https://github.com/shehryargit/chat-app-argo-cd.git
     targetRevision: HEAD
-    path: dev
+    path: dev/frontend
     helm: {}
 
   destination:
