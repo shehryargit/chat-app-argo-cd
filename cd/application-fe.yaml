@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: backend
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/shehryargit/chat-app-argo-cd.git
+    targetRevision: HEAD
+    path: kubernetes-files
+    helm:
+      valueFiles:
+        - fe-values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: chatapp
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

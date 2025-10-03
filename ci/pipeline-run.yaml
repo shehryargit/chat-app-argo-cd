@@ -1,0 +1,18 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: chatapp-pipelinerun
+spec:
+  pipelineRef:
+    name: chatapp-pipeline
+  params:
+    - name: IMAGE_BACKEND
+      value: docker.io/YOURUSER/chatapp-backend:latest
+    - name: IMAGE_FRONTEND
+      value: docker.io/YOURUSER/chatapp-frontend:latest
+    - name: IMAGE_MONGODB
+      value: docker.io/YOURUSER/chatapp-mongodb:latest
+  workspaces:
+    - name: shared-workspace
+      persistentVolumeClaim:
+        claimName: source-pvc

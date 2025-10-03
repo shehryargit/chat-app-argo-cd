@@ -1,0 +1,19 @@
+deployment: 
+  name: frontend-dep 
+  namespace: chatapp
+  replicas: 1
+  port: 80
+  image: "sheri047/chatapp-fe"
+  tag: "59"
+  imagePullPolicy: IfNotPresent
+
+service: 
+  name: frontend
+  namespace: chatapp
+  type: LoadBalancer
+  port: 80
+  targetPort: 80
+
+env:
+  NODE_ENV: production
+  REACT_APP_BACKEND_URL: "http://backend.chatapp.svc.cluster.local:5001"

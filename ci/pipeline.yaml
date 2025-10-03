@@ -1,0 +1,22 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: chatapp-pipeline
+spec:
+  workspaces:
+    - name: shared-workspace
+  params:
+    - name: IMAGE_BACKEND
+    - name: IMAGE_FRONTEND
+    - name: IMAGE_MONGODB
+  tasks:
+    - name: build-backend
+      taskRef:
+        name: build-backend
+      params:
+        - name: IMAGE
+          value: $(params.IMAGE_BACKEND)
+      workspaces:
+        - name: source
+          workspace: shared-workspace
+    # Repeat for frontend + mongodb
