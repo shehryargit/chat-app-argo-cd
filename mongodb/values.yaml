@@ -1,0 +1,19 @@
+deployment: 
+  name: mongo-dep 
+  namespace: chatapp
+  replicas: 1
+  port: 27017
+  image: "mongo"
+  tag: "latest"
+  imagePullPolicy: IfNotPresent
+
+service: 
+  name: mongo
+  namespace: chatapp
+  type: ClusterIP
+  port: 27017
+  targetPort: 27017
+
+env:
+  MONGO_INITDB_ROOT_USERNAME: root
+  MONGO_INITDB_ROOT_PASSWORD: admin  

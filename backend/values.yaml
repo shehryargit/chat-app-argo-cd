@@ -1,0 +1,21 @@
+deployment: 
+  name: backend-dep
+  namespace: chatapp
+  replicas: 1
+  port: 5001
+  image: "sheri047/chatapp-be"
+  tag: "69"
+  imagePullPolicy: IfNotPresent
+
+service: 
+  name: backend
+  namespace: chatapp
+  type: ClusterIP
+  port: 5001
+  targetPort: 5001
+
+env:
+  NODE_ENV: "production"
+  MONGODB_URI: "mongodb://root:admin@mongo:27017/chatApp?authSource=admin"
+  JWT_SECRET: "secret"
+  PORT: "5001"
