@@ -10,6 +10,7 @@ spec:
     repoURL: https://github.com/shehryargit/chat-app-argo-cd.git
     targetRevision: HEAD
     path: dev
+    helm: {}
 
   destination:
     server: https://kubernetes.default.svc
